@@ -74,3 +74,86 @@ int main()
 
     return 0;
 }
+
+//  second method
+#include <iostream>
+#include <string>
+#include <unordered_map>
+
+using namespace std;
+
+int countAnagram(string &s1, string &s2)
+{
+
+    int m = s1.size();
+    int n = s2.size();
+    int totalCount = 0;
+
+    int ansCount = 0;
+
+    // map banao pattern ka
+    unordered_map<char, int> countMap;
+    for (auto val : s2)
+    {
+        countMap[val]++;
+
+        if (countMap[val] == 1)
+            totalCount++;
+    }
+    int i = 0;
+    int j = 0;
+
+    while (j < m)
+    {
+
+        // calculations
+        if (countMap.find(s1[j]) != countMap.end())
+        {
+            countMap[s1[j]]--;
+        }
+
+        if (countMap[s1[j]] == 0)
+        {
+            totalCount--;
+        }
+
+        // reach window size
+
+        if (j - i + 1 < n)
+        {
+            j++;
+        }
+        else if (j - i + 1 == n)
+        {
+
+            if (totalCount == 0)
+                ansCount++;
+
+            if (count.find(s1[i]) != count.end())
+            {
+                count[s1[i]]++;
+                if (count[s1[i]] == 1)
+                {
+                    totalCount++;
+                }
+            }
+            i++;
+
+            j++;
+        }
+    }
+
+    return ansCount;
+}
+
+int main()
+{
+
+    string text = "aabaabaa";
+    string pattern = "aaba";
+
+    int occurrences = countAnagram(text, pattern);
+    cout << "Occurrences of anagrams: " << occurrences << endl;
+
+    return 0;
+}

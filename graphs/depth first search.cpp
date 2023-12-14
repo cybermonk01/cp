@@ -77,6 +77,87 @@ public:
             }
         }
     }
+
+    bool isCyclic()
+    {
+
+        unordered_map<int, bool> visited;
+        queue<pair<int, int>> q;
+
+        for (auto &pair : adjList)
+        {
+            visited[pair.first] = true;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+
+            if (!visited[i])
+            {
+                q.push({i, -1});
+                visited[i] = true;
+
+                while (!q.empty())
+                {
+
+                    int node = q.front().first;
+                    int parent = q.front().second;
+                    q.pop();
+
+                    for (int neighbour : adjList[node])
+                    {
+                        if (!visited[neighbour])
+                        {
+                            visited[neighbour] = true;
+                            q.push({neighbour, node});
+                        }
+                        else if (parent != neighbour)
+                            return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool isCyclicDFSUtil(int start, unordered_map<int, bool> &visited, int parent)
+    {
+
+        visited[start] = true;
+        for (auto neighbor : adjList[start])
+        {
+
+            if (!visited[neighbor])
+            {
+                visited[neighbor] = true;
+                if (isCyclicDFS())
+                    return true;
+                else if (parent != neighbor)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool isCyclicDFS()
+    {
+        unordered_map<int, bool> visited;
+
+        for (auto &pair : adjList)
+        {
+            visited[pair.first];
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            if (!visited[i] && isCyclicDFSUtil(i, visited, -1))
+                return true;
+        }
+        return false;
+    }
 };
 
 int main()

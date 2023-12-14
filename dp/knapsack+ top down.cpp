@@ -36,14 +36,15 @@ int knapsack(vector<int> &wt, vector<int> &val, int cap, int n, int dp[][1001])
         }
         return dp[i][j];
     }
-    int main()
-    {
+}
+int main()
+{
 
-        vector<int> wt = {10, 20, 30};
-        vector<int> val = {60, 100, 120};
-        int cap = 50;
-        int n = wt.size();
-        int dp[n + 1][1001];
-        memset(dp, -1, sizeof(dp));
-        cout << knapsack(wt, val, cap, n, dp);
-    }
+    vector<int> wt = {10, 20, 30};
+    vector<int> val = {60, 100, 120};
+    int cap = 50;
+    int n = wt.size();
+    int dp[n + 1][1001];
+    memset(dp, -1, sizeof(dp));
+    cout << knapsack(wt, val, cap, n, dp);
+}

@@ -25,7 +25,7 @@ node *buildTree()
     int data;
     cout << "enter data" << endl;
     cin >> data;
-    if (data = -1)
+    if (data == -1)
         return nullptr;
 
     node *root = new node(data);

@@ -42,5 +42,5 @@ int main()
 
     solve(v, sum);
 
-    return 0;
+    return 330;
 }
